@@ -5,6 +5,7 @@ import com.jknpp.gerenciamentopedidos.dto.ClienteRequestDTO;
 import com.jknpp.gerenciamentopedidos.dto.ClienteResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface ClienteMapper {
@@ -15,4 +16,8 @@ public interface ClienteMapper {
     Cliente toEntity(ClienteRequestDTO dto);
 
     ClienteResponseDTO toDTO(Cliente cliente);
+
+    ClienteResponseDTO toResponseDTO(Cliente clienteSalvo);
+
+    void updateEntityFromDto(ClienteRequestDTO dto, @MappingTarget Cliente cliente);
 }
