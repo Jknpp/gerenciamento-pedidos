@@ -65,9 +65,10 @@ public class ClienteService {
     }
 
     public void deletarPorId(Long id){
-        if (!clienteRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Cliente não encontrado com o ID: " + id);
-        }
-        clienteRepository.deleteById(id);
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com o ID: " + id));
+
+        cliente.setAtivo(false);
+        clienteRepository.save(cliente);
     }
 }
