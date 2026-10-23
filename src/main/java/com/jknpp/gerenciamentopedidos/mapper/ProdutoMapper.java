@@ -5,6 +5,7 @@ import com.jknpp.gerenciamentopedidos.dto.ProdutoRequestDTO;
 import com.jknpp.gerenciamentopedidos.dto.ProdutoResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface ProdutoMapper {
@@ -14,4 +15,6 @@ public interface ProdutoMapper {
     Produto toEntity(ProdutoRequestDTO dto);
 
     ProdutoResponseDTO toDTO(Produto produto);
+
+    void updateEntityFromDto(ProdutoRequestDTO dto, @MappingTarget Produto produto);
 }
