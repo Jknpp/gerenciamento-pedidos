@@ -9,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_pedidos")
@@ -29,10 +31,14 @@ public class Pedido {
     @Column(name = "data_pedido", nullable = false, updatable = false)
     private LocalDateTime dataPedido;
 
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemPedido> itens = new ArrayList<>();
+
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusPedido status = StatusPedido.PENDENTE;
 
     @Column(name = "valor_total", nullable = false)
     private BigDecimal valorTotal;
+
 }

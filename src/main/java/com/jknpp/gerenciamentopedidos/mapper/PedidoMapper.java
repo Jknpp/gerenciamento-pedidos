@@ -18,5 +18,6 @@ public interface PedidoMapper {
 
     @Mapping(target = "clienteId", source = "cliente.id")
     @Mapping(target = "nomeCliente", source = "cliente.nome")
+    @Mapping(target = "itens", source = "itens")
     PedidoResponseDTO toDTO(Pedido pedido);
 }
